@@ -1,8 +1,8 @@
 class Solution(object):
     def numIdenticalPairs(self, nums):
-        count=0
-        for i in range(0, len(nums)):
-            for j in range(0, len(nums)):
-                if j>i and (nums[i] == nums[j]):
-                        count+=1
-        return count    
+        distinct_nums = set(nums)
+        good = 0
+        for i in distinct_nums:
+            n = nums.count(i)
+            good+= n*(n-1)//2
+        return good
