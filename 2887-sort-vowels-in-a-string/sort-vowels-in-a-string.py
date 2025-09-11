@@ -1,13 +1,15 @@
 class Solution(object):
     def sortVowels(self, s):
-        vowels = {"a","e","i","o","u","A","E","I","O","U"}
-        t=[]
-        for i in range(0,len(s)):
-            if s[i] in vowels:
-                t.append(s[i])
-        t.sort()
-        for i in range(0,len(s)):
-            if s[i] in vowels:
-                s = s[0:i] + t[0] + s[i+1:]
-                t.pop(0)
-        return s
+        vowels_set = set('aeiouAEIOU')
+        extracted_vowels = []
+        for char in s:
+            if char in vowels_set:
+                extracted_vowels.append(char)
+        extracted_vowels.sort()
+        result_list = list(s)
+        vowel_pointer = 0
+        for i in range(len(result_list)):
+            if result_list[i] in vowels_set:
+                result_list[i] = extracted_vowels[vowel_pointer]
+                vowel_pointer += 1
+        return "".join(result_list)
